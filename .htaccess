@@ -1,0 +1,29 @@
+RewriteEngine on 
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+############################################
+## enable rewrites
+
+    Options +FollowSymLinks
+    RewriteEngine on
+############################################
+RewriteBase     /
+############################################
+## never rewrite for existing files, directories and links
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+############################################
+# and finally, the rewrite rules
+RewriteRule     ^([a-zA-Z0-9_\-]+)/?$    /index.html?page=$1 [L,QSA]
+# RewriteRule     ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/?$   /index.html?page=$1&sub_page=$2 [L,QSA]
+# RewriteRule     ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/?$   /index.html?page=$1&sub_page=$2&item=$3 [L,QSA]
+# RewriteRule     ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/?$   /index.html?page=$1&sub_page=$2&item=$3&sub_item=$4 [L,QSA]
+
+####
+Header add Access-Control-Allow-Origin * 
