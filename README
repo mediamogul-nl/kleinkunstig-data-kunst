@@ -1,0 +1,9 @@
+# Kleinkunstig Data Kunst Project
+
+
+api - bevat alle files voor de requests van de tool naar de database
+
+mysql-data - bevat sql files voor de benodigde database tabellen
+De tabel 'tikapi__vids' is erg groot, dus deze is onderverdeeld in 7 files.
+Expand en importeer eerst 'tikapi__vids-00.sql.zip', deze creeert de tabel en insert de eerste rijen, 
+loop vervolgens de rest van de zipfiles door om de rest van de tabel te importeren
